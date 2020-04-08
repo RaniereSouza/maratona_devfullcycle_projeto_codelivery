@@ -6,7 +6,7 @@ import {
 
 export enum OrderStatus {
     PENDING = 1,
-    DONE = 2
+    DONE    = 2
 }
 
 @Entity({name: 'orders'})

@@ -1,27 +1,28 @@
-import {AmqpConnection, RabbitSubscribe} from "@golevelup/nestjs-rabbitmq";
-import {WebSocketGateway, WebSocketServer} from "@nestjs/websockets";
-import {Server} from "socket.io";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Order, OrderStatus} from "../order.model";
-import {Repository} from "typeorm";
+import { WebSocketGateway, WebSocketServer } from "@nestjs/websockets";
+import { InjectRepository }                  from "@nestjs/typeorm";
+import { AmqpConnection, RabbitSubscribe }   from "@golevelup/nestjs-rabbitmq";
+
+import { Repository } from "typeorm";
+import { Server }     from "socket.io";
+
+import { Order, OrderStatus } from "../order.model";
 
 @WebSocketGateway() //Socket.io
 export class MappingService {
+
     @WebSocketServer() server: Server;
 
     constructor(
         @InjectRepository(Order)
         private readonly orderRepo: Repository<Order>,
-        private amqpConnection: AmqpConnection,
-    ) {
-
-    }
+        private amqpConnection:     AmqpConnection,
+    ) { }
 
 
     @RabbitSubscribe({
-        exchange: 'amq.direct',
+        exchange:   'amq.direct',
         routingKey: 'mapping.new-position',
-        queue: 'positions'
+        queue:      'mapping/positions'
     })
     public async rpcHandler(message) { //lat, lng, order
 
@@ -30,7 +31,7 @@ export class MappingService {
 
         this.server.emit(`order.${message.order}.new-position`,{lat, lng});
 
-        if(lat === 0 && lng === 0){
+        if ((lat === 0) && (lng === 0)) {
             
             const order = await this.orderRepo.findOne(message.order);
 
@@ -41,7 +42,7 @@ export class MappingService {
                     'amq.direct',
                     'orders.change-status',
                     {
-                        id: order.id,
+                        id:     order.id,
                         status: OrderStatus.DONE
                     }
                 )

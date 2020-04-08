@@ -13,6 +13,11 @@ import { DriverHttpService }        from './driver-http/driver-http.service';
     imports: [
         RabbitMQModule.forRoot(RabbitMQModule, {
             uri: 'amqp://admin:admin@rabbitmq:5672',
+            connectionInitOptions: {
+                wait:    false,
+                reject:  false,
+                timeout: 30000,
+            }
         }),
         TypeOrmModule.forFeature([Order]),
         HttpModule

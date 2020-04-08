@@ -8,13 +8,17 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+      - "25672:25672"
     volumes:
-      - './rabbitmq_data:/var/lib/rabbitmq/mnesia'
+      - 'rabbitmq_microservice_data:/var/lib/rabbitmq/mnesia'
     environment:
       - RABBITMQ_DEFAULT_USER=admin 
       - RABBITMQ_DEFAULT_PASS=admin
     networks:
       - network
+
+volumes:
+  rabbitmq_microservice_data:
 
 networks:
   network:

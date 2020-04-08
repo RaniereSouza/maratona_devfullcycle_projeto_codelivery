@@ -20,8 +20,12 @@ export class ChangeStatusOrderService {
         queue:      'orders/status'
     })
     public async rpcHandler(message) { //id, status
+
         const order = await this.orderRepo.findOne(message.id);
-        order.status = message.status;
-        return await this.orderRepo.save(order);
+        
+        if (order) {
+            order.status = message.status;
+            return await this.orderRepo.save(order);
+        }
     }
 }
