@@ -15,8 +15,8 @@ import { Order } from "../order.model";
 export class OrderSubscriberService implements EntitySubscriberInterface<Order> {
 
     constructor(
-        connection: Connection,
-        private amqpConnection: AmqpConnection,
+        connection:                 Connection,
+        private amqpConnection:     AmqpConnection,
         @InjectRepository(Order)
         private readonly orderRepo: Repository<Order>
     ) {

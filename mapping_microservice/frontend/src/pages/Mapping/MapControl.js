@@ -1,11 +1,12 @@
-import * as React from 'react';
-import {useMemo} from "react";
-import {createPortal} from "react-dom";
-import {useEffect} from "react";
+import * as React       from 'react';
+import { useMemo }      from 'react';
+import { useEffect }    from 'react';
+import { createPortal } from 'react-dom';
 
 const MapControl = (props) => {
-    const {map, position, children} = props;
-    const controlDiv = useMemo(() => document.createElement('div'), []);
+
+    const { map, position, children } = props;
+    const controlDiv                  = useMemo(() => document.createElement('div'), []);
 
     useEffect(() => {
         if (map && position) {

@@ -3,7 +3,7 @@ import { TypeOrmModule }      from "@nestjs/typeorm";
 import { RabbitMQModule }     from '@golevelup/nestjs-rabbitmq';
 
 import { OrderController } from "./order.controller";
-import { Order, }          from "./order.model";
+import { Order }          from "./order.model";
 
 import { ChangeStatusOrderService } from './change-status-order/change-status-order.service';
 import { OrderSubscriberService }   from './order-subscriber/order-subscriber.service';

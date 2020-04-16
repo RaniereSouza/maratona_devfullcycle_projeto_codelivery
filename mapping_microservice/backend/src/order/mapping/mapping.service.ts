@@ -36,8 +36,12 @@ export class MappingService {
             const order = await this.orderRepo.findOne(message.order);
 
             if (order) {
+
                 order.status = OrderStatus.DONE;
                 await this.orderRepo.save(order);
+
+                this.server.emit(`order.${order.id}.change-status`, {status: order.status});
+
                 await this.amqpConnection.publish(
                     'amq.direct',
                     'orders.change-status',

@@ -7,13 +7,14 @@ import  {
             Req, 
             Request 
         }                    from '@nestjs/common';
-import  { InjectRepository } from "@nestjs/typeorm";
+import  { InjectRepository } from '@nestjs/typeorm';
 
-import { Repository } from "typeorm";
+import { Repository } from 'typeorm';
+// import * as io from 'socket.io-client';
 
-import { Order } from "./order.model";
+import { Order } from './order.model';
 
-import { DriverHttpService } from "./driver-http/driver-http.service";
+import { DriverHttpService } from './driver-http/driver-http.service';
 
 @Controller('orders') // /orders
 export class OrderController {
@@ -34,6 +35,16 @@ export class OrderController {
         });
         return {data: orders};
     }
+
+    /* @Get('/index') // no @Render
+    async getIndex() {
+        const orders = await this.orderRepo.find({
+            order: {
+                created_at: 'DESC'
+            }
+        });
+        return {data: orders};
+    } */
 
     @Get('/create')
     @Render('order/create')

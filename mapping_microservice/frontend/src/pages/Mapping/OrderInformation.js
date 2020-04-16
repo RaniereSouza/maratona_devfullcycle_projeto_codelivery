@@ -1,11 +1,17 @@
 import * as React from 'react';
-import List from '@material-ui/core/List';
+
+import  { 
+            Card, 
+            ListItemAvatar, 
+            ListItemText 
+        }       from '@material-ui/core';
+import List     from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {Card, ListItemAvatar, ListItemText} from "@material-ui/core";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar   from '@material-ui/core/Avatar';
 
 const OrderInformation = (props) => {
-    const {order} = props;
+
+    const { order } = props;
 
     function labelStatus(status) {
         switch (status) {
@@ -31,6 +37,6 @@ const OrderInformation = (props) => {
             </List>
         </Card>
     );
-};
+}
 
-export default OrderInformation
+export default OrderInformation;

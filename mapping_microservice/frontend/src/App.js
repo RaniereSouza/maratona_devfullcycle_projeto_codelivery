@@ -1,8 +1,11 @@
-import React from 'react';
-import './App.css';
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import React                            from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import { SnackbarProvider } from "notistack";
+
 import Mapping from "./pages/Mapping";
-import {SnackbarProvider} from "notistack";
+
+import './App.css';
 
 function App() {
     return (
