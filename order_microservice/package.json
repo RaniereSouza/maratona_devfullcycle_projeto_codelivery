@@ -26,7 +26,7 @@
     "@nestjs/common": "^6.10.14",
     "@nestjs/config": "^0.2.4",
     "@nestjs/core": "^6.10.14",
-    "@nestjs/platform-express": "^6.10.14",
+    "@nestjs/platform-express": "^9.2.1",
     "@nestjs/platform-socket.io": "^7.0.7",
     "@nestjs/typeorm": "^6.3.3",
     "@nestjs/websockets": "^7.0.7",
